@@ -29,9 +29,9 @@ export class PopupAddFoodComponent {
     };
     this.service.postFoodInfo(addFoodInfo).subscribe(res => {
       console.log(res);
-        if(res === true){
-          this.addFood.emit(res);
-        }
+        // if(res === true){
+        //   this.addFood.emit(res);
+        // }
     });
   }
 
