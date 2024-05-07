@@ -1,0 +1,34 @@
+<div class="popup">
+    <div class="popup-content">
+        <h2>Add New Food</h2>
+        <form (ngSubmit)="submitForm()">
+            <div class="foodImage">
+                <span>Food Image: </span>
+                <input type="text" placeholder="Plz Enter a Food Image" name="foodImage" id="foodImage" [(ngModel)]="imageMenu" required>
+            </div>
+
+            <div class="foodName">
+                <span>Food Name: </span>
+                <input type="text" placeholder="Plz Enter a Food Name" name="foodName" id="foodName" [(ngModel)]="name" required>
+            </div>
+
+            <div class="foodPrice">
+                <span>Food Price: </span>
+                <input type="text" placeholder="Plz Enter a Food Price" name="foodPrice" id="foodPrice" [(ngModel)]="price" required>
+            </div>
+
+            <div class="foodDescription">
+                <span>Descriptions: </span>
+                <input type="text" placeholder="Plz Enter a Food Descriptions" name="foodDescription" id="foodDescription" [(ngModel)]="description" required>
+            </div>
+
+            <div class="foodIngredient">
+                <span>Ingredients: </span>
+                <input type="text" placeholder="Plz Enter a Food Ingredients" name="foodIngredient" id="foodIngredient" [(ngModel)]="ingredient" required>
+            </div>
+
+            <button type="submit" >Submit</button>
+        </form>
+        <button class="closePopup" ((click))="closePopup()">Close</button>
+    </div>
+</div>

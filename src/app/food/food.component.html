@@ -1,0 +1,47 @@
+<div class="food-container">
+    <div class="food-container-nav-bar">
+        <div class="nav-bar-tittles">
+            <div class="nav-bar-tittle">Menu Here</div>
+            <div class="two-color-line"></div>
+        </div>
+        <div class="nav-bar-details">
+            <div class="nav-bar-add-food" (click)="openPopup()">
+            <app-popup-add-food *ngIf="showPopup" (close)="closePopup()" (submit)="addNewFood($event)"></app-popup-add-food>
+                <div class="add-food-image"><img src="./../../assets/plus.png" alt="add-food-image"></div>
+                <div class="add-food-details">
+                    ADD FOOD
+                </div>
+            </div>
+            <div class="nav-bar-search-food">
+                <input type="text" placeholder="Search Food Name" name="search">
+                <button>
+                    <i class="fa fa-search" style="font-size: 22px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="food-container-details">
+        <div class="food-container-details-nav-bar-header">
+            <div class="food-container-detail-header">
+                <span class="food-id">#</span>
+                <span class="food-image">Food Image</span>
+                <span class="food-name">Food Name</span>
+                <span class="food-price">Food Price</span>
+                <span class="food-action">Action</span>
+            </div>
+        </div>
+        <div class="color-line"></div>
+        <div class="food-container-details-nav-bar">
+            <div class="food-container-detail" *ngFor="let food of foods, let i = index">
+                <span class="food-name">{{ i + 1 }}</span>
+                <span class="food-image"><img [src]="food.imageMenu" [alt]="food.imageMenu"></span>
+                <span class="food-name">{{ food.name }}</span>
+                <span class="food-price">{{ food.price }}</span>
+                <div class="food-action">
+                    <button (click)="editFood(food)"> <i class="fa fa-edit" style="font-size: 22px; color: green;"></i> </button>
+                    <button (click)="deleteFood(i)"> <i class="fa fa-trash" style="font-size: 22px; color: red;"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

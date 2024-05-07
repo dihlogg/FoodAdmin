@@ -1,0 +1,197 @@
+<div class="dashboard-container">
+    <div class="left-container">
+        <div class="left-container-nav-bar">
+            <div class="task-lists">Task list</div>
+            <div class="list-icon"><fa-icon [icon]="faBarsStaggered"></fa-icon></div>
+        </div>
+        <div class="nav-bar-tabs">
+            <div class="new" (click)="onNewClick()" 
+                [className]="new == true?'new new-active':'new'">New</div>
+            <div class="delivery" (click)="onDeliveryClick()"
+                [className]="delivery == true?'delivery delivery-active':'delivery'">Delivery</div>
+            <div class="completed" (click)="onCompletedClick()"
+                [className]="completed == true?'completed completed-active':'completed'">Completed</div>
+        </div>
+        <div class="left-container-data-box">
+            <div class="left-container-new-box" *ngIf="new == true">
+                <div class="new-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00001</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
+                            <div class="left-container-info-details-status">As soon as</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+                <div class="new-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00002</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
+                            <div class="left-container-info-details-status">As soon as</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+                <div class="new-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00003</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
+                            <div class="left-container-info-details-status">As soon as</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+                <div class="new-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00004</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
+                            <div class="left-container-info-details-status">As soon as</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="left-container-delivery-box" *ngIf="delivery == true">
+                <div class="delivery-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00007</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faTruck"></fa-icon></div>
+                            <div class="left-container-info-details-status">In Transit</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+            </div>
+            <div class="left-container-completed-box" *ngIf="completed == true">
+                <div class="completed-box">
+                    <div class="left-container-box-info">
+                        <div class="left-container-info-name">
+                            <span>Task #00005</span>
+                        </div>
+                        <div class="left-container-info-details">
+                            <div class="left-container-info-details-icon"><fa-icon [icon]="faKitchenSet"></fa-icon>
+                            </div>
+                            <div class="left-container-info-details-status">10 minutes</div>
+                        </div>
+                    </div>
+                    <div class="left-container-box-price">
+                        <span>120,000đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="right-container-information">
+            <div class="right-container-info-status">
+                <div class="circle">
+                    <div class="ui-widgets">
+                        <div class="ui-values">25%</div>
+                    </div>
+                </div>
+                <div class="status">
+                    <div class="status-title">New</div>
+                    <div class="status-details">Order execution starts automaticly</div>
+                </div>
+                <div class="user">
+                    <div class="user-image"><img src="./../../assets/user.png" alt="profile-image"></div>
+                    <div class="user-details">
+                        Manager - Đình Long
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-container-task-info">
+            <div class="right-container-task-name">Task info</div>
+            <div class="right-container-task-details">
+                <div class="task-time">
+                    <div class="line"></div>
+                    <div class="task-time-title">Preparing time</div>
+                    <div class="task-time-details">00h : 25m : 30s</div>
+                </div>
+                <div class="task-address">
+                    <div class="line"></div>
+                    <div class="task-address-title">Address</div>
+                    <div class="task-address-details">Cẩm Lệ, Đà Nẵng</div>
+                </div>
+                <div class="task-phone">
+                    <div class="line"></div>
+                    <div class="task-phone-title">Đình Long</div>
+                    <div class="task-phone-details">0123 456 789</div>
+                </div>
+                <div class="task-phone-image"><img src="./../../assets/phone.png" alt="phone-image"></div>
+            </div>
+        </div>
+        <div class="right-container-data-box">
+            <div class="right-container-data-box-ordered">
+                <div class="food-order-image"><img src="./../../assets/menufood1.png" alt="pasta"></div>
+                <div class="food-order-details">
+                    <span class="order-name">Pasta</span>
+                    <span class="order-quantity">x2</span>
+                    <span class="total-price">70,000đ</span>
+                </div>
+            </div>
+            <div class="right-container-data-box-ordered">
+                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
+                <div class="food-order-details">
+                    <span class="order-name">Chicken</span>
+                    <span class="order-quantity">x4</span>
+                    <span class="total-price">140,000đ</span>
+                </div>
+            </div>
+            <div class="right-container-data-box-ordered">
+                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
+                <div class="food-order-details">
+                    <span class="order-name">Chicken</span>
+                    <span class="order-quantity">x4</span>
+                    <span class="total-price">140,000đ</span>
+                </div>
+            </div>
+            <div class="right-container-data-box-ordered">
+                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
+                <div class="food-order-details">
+                    <span class="order-name">Chicken</span>
+                    <span class="order-quantity">x4</span>
+                    <span class="total-price">140,000đ</span>
+                </div>
+            </div>
+            <div class="right-container-data-box-ordered">
+                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
+                <div class="food-order-details">
+                    <span class="order-name">Chicken</span>
+                    <span class="order-quantity">x4</span>
+                    <span class="total-price">140,000đ</span>
+                </div>
+            </div>
+        </div>
+        <div class="right-container-ordered-total-price">210,000đ</div>
+            <div class="right-container-control-button">
+                Accept Order
+            </div>
+    </div>
+</div>
