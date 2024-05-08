@@ -1,9 +1,9 @@
 
 import { FoodInfoApiServiceService } from './../api-services/food-info-api-service.service';
-import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog'
-import { PopupAddFoodComponent } from '../popup-add-food/popup-add-food.component';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Food } from './food.model';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-food',
@@ -12,13 +12,19 @@ import { Food } from './food.model';
 })
 export class FoodComponent {
   constructor(private service: FoodInfoApiServiceService) { }
+
+  public dataSource: MatTableDataSource<any> = new MatTableDataSource<Food>()
+  @ViewChild(MatSort) sort!: MatSort;
+
   ngOnInit(): void {
-    this.refreshFoodInfo();
+    if(this.foods.length === 0){
+      this.refreshFoodInfo();
+    }
   }
+  foodInfoParrent: Food;
   foods: Food[] = [];
+  searchFood = '';
   showPopup = false;
-  selectedFood: Food;
-  showEditPopup: boolean = false;
 
   refreshFoodInfo() {
     this.service.getFoodInfos().subscribe(data => {
@@ -26,33 +32,61 @@ export class FoodComponent {
     });
   }
 
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+  filteredFoods(searchFood: string) {
+    this.dataSource.filter = searchFood.trim().toLocaleLowerCase();
+    const filterValue = searchFood;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onMatSortChange() {
+    this.dataSource.sort = this.sort;
+  }
+
   openPopup() {
+    this.foodInfoParrent = {
+      id: null,
+      imageMenu: "",
+      name: "",
+      price: 0,
+      description: "",
+      ingredient: "",
+      imageDetail:""
+    };
     this.showPopup = true;
   }
 
-  closePopup() {
-    this.showPopup = false;
+  openEditPopup(foodInfoEdit: Food) {
+    this.foodInfoParrent = foodInfoEdit;
+    this.showPopup = true;
   }
 
-  addNewFood(result: boolean) {
-    this.refreshFoodInfo();
-    this.closePopup();
+  closePopup(result: boolean) {
+    console.log("Close pupup");
+    this.showPopup = result;
+    if(result){
+      this.refreshFoodInfo();
+    }
   }
 
-  deleteFood(id: any) {
-    
-  }
+  // addNewFood(result: boolean) {
+  //   this.refreshFoodInfo();
+  //   this.closePopup();
+  // }
 
-  editFood(food : any) {
-    this.selectedFood = food;
-    this.showEditPopup = true;
-  }
+  // editFood() {
+  //   this.refreshFoodInfo();
+  // }
 
-  saveEditedFood(editedFood: any) {
-    this.showEditPopup = false;
-  }
-
-  closeEditPopup() {
-    this.showEditPopup = false;
+  deleteFood(idFood: any) {
+    const confirmDelete = confirm('Do you want to delete this food?');
+    if (confirmDelete) {
+      this.service.deleteFoodInfo(idFood).subscribe(() => {
+        this.refreshFoodInfo();
+      });
+    }
   }
 }
