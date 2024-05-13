@@ -4,6 +4,7 @@ import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Food } from './food.model';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-food',
@@ -11,15 +12,21 @@ import { MatSort } from '@angular/material/sort';
   styleUrl: './food.component.css'
 })
 export class FoodComponent {
-  constructor(private service: FoodInfoApiServiceService) { }
+  constructor(private service: FoodInfoApiServiceService, private http: HttpClient) { }
 
   public dataSource: MatTableDataSource<any> = new MatTableDataSource<Food>()
   @ViewChild(MatSort) sort!: MatSort;
 
+
   ngOnInit(): void {
-    if(this.foods.length === 0){
+    if (this.foods.length === 0) {
       this.refreshFoodInfo();
     }
+
+    // this.http.get<Food[]>(this.foodInfoParrent.name)
+    //   .subscribe((data: any) => {
+    //     this.dataSource = new MatTableDataSource<Food>(data)
+    //   });
   }
   foodInfoParrent: Food;
   foods: Food[] = [];
@@ -46,6 +53,7 @@ export class FoodComponent {
     this.dataSource.sort = this.sort;
   }
 
+
   openPopup() {
     this.foodInfoParrent = {
       id: null,
@@ -54,7 +62,7 @@ export class FoodComponent {
       price: 0,
       description: "",
       ingredient: "",
-      imageDetail:""
+      imageDetail: ""
     };
     this.showPopup = true;
   }
@@ -67,19 +75,10 @@ export class FoodComponent {
   closePopup(result: boolean) {
     console.log("Close pupup");
     this.showPopup = result;
-    if(result){
+    if (result) {
       this.refreshFoodInfo();
     }
   }
-
-  // addNewFood(result: boolean) {
-  //   this.refreshFoodInfo();
-  //   this.closePopup();
-  // }
-
-  // editFood() {
-  //   this.refreshFoodInfo();
-  // }
 
   deleteFood(idFood: any) {
     const confirmDelete = confirm('Do you want to delete this food?');
@@ -88,5 +87,14 @@ export class FoodComponent {
         this.refreshFoodInfo();
       });
     }
+  }
+  loadData(): Promise<void> {
+    return new Promise<void>((resolve) => {
+      this.http.get(this.service.getFoodInfos.toString()).subscribe((data: any) => {
+        this.foods = data; // Assuming your data structure matches the response
+        console.log('Data loaded successfully');
+        resolve();
+      });
+    });
   }
 }

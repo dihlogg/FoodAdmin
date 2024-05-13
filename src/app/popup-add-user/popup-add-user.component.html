@@ -1,0 +1,41 @@
+<div class="popup">
+    <div class="popup-content">
+        <h2>{{ (userInfo.id === null) ? 'Add User Details' : 'Edit User Details' }}</h2>
+        <form (ngSubmit)="submitForm()">
+
+            <div class="userName">
+                <span>User Name: </span>
+                <input type="text" placeholder="Plz Enter a User Name" name="userName" id="userName"
+                    [(ngModel)]="userName" required>
+            </div>
+
+            <div class="userPassword">
+                <span>User Password: </span>
+                <input type="text" placeholder="Plz Enter a User Password" name="userPassword" id="userPassword"
+                    [(ngModel)]="userPassword" required>
+            </div>
+
+            <div class="userFullName">
+                <span>User Full Name: </span>
+                <input type="text" placeholder="Plz Enter a User Full Name" name="userFullName" id="userFullName"
+                    [(ngModel)]="userFullName" required>
+            </div>
+
+            <div class="userAddress">
+                <span>User Full Name: </span>
+                <input type="text" placeholder="Plz Enter a User Address" name="userAddress" id="userAddress"
+                    [(ngModel)]="userAddress" required>
+            </div>
+
+            <div class="userPhone">
+                <span>User Full Name: </span>
+                <input type="text" placeholder="Plz Enter a User Phone" name="userPhone" id="userPhone"
+                    [(ngModel)]="userPhone" required>
+            </div>
+
+            
+            <button type="submit">{{(userInfo.id !== null) ? 'Edit' : 'Add' }}</button>
+        </form>
+        <button class="closePopup" (click)="closePopup(true)">Close</button>
+    </div>
+</div>

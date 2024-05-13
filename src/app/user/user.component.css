@@ -1,0 +1,238 @@
+.user-container {
+    height: 92vh;
+    width: 80vw;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 150px;
+    background-color: #E8EAFA;
+    overflow: hidden;
+}
+
+/* User Container Nav Bar */
+.user-container-nav-bar {
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+/* Title Nav Bar */
+.nav-bar-tittles {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.nav-bar-tittle {
+    display: flex;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.two-color-line {
+    min-width: 90%;
+    height: 4px;
+    margin-top: 10px;
+    margin-right: 20px;
+    background: linear-gradient(to left, #F5F5F5 90%, #FC8019 10%);
+}
+
+/* Details Nav Bar */
+.nav-bar-details {
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+}
+
+.nav-bar-add-user {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    width: 150px;
+    height: 50px;
+    background-color: #FC8019;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    margin-left: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.nav-bar-search-user {
+    display: flex;
+    flex-direction: row;
+    margin-top: -15px;
+    justify-content: flex-end;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.add-user-image img {
+    width: 30px;
+    height: 30px;
+    border: 5px;
+    margin-right: 10px;
+    color: transparent;
+}
+
+.add-user-details {
+    display: flex;
+    font-size: 13px;
+    color: #000000;
+    font-weight: 300;
+    color: #ffffff;
+}
+
+.nav-bar-search-user input[type=text] {
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    border: none;
+    border: 2px solid #FC8019;
+    padding: 10px;
+}
+
+.nav-bar-search-user button {
+    background-color: transparent;
+    color: #FC8019;
+    padding: 5px 10px;
+    margin-right: 16px;
+    margin-left: 10px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+/* User Container Details */
+.user-container-details {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 20px;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
+
+.user-container-details-nav-bar-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-container-detail-header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+/* container display user  */
+.user-container-details-nav-bar {
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    width: 101%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    white-space: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.user-container-details-nav-bar::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+}
+
+.user-container-detail {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    flex-grow: 1;
+}
+
+.user-container-detail:nth-child(odd) {
+    background-color: #E8EAFA;
+}
+
+.user-container-detail .user-id {
+    margin-left: 20px;
+}
+
+.user-container-detail .user-phone {
+    margin-right: 20px;
+}
+
+.user-container-detail .user-fullname {
+    margin-left: 40px;
+}
+
+.user-container-detail .user-action {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20px;
+}
+
+.user-container-detail .user-action button {
+    background-color: transparent;
+    padding: 5px 5px;
+    font-size: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.color-line {
+    min-width: 90%;
+    height: 2px;
+    margin-top: 10px;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+    .user-container {
+        width: 90vw;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .user-container-nav-bar {
+        height: auto;
+    }
+
+    .two-color-line {
+        width: 850px;
+    }
+
+    .nav-bar-search-user input[type=text] {
+        width: 200px;
+    }
+
+    .user-container-details-nav-bar {
+        height: auto;
+    }
+
+    .user-container-detail {
+        width: 80%;
+    }
+}
