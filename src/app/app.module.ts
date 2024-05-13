@@ -13,6 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PopupAddFoodComponent } from './popup-add-food/popup-add-food.component';
 import { FormsModule } from '@angular/forms';
+import { PopupAddUserComponent } from './popup-add-user/popup-add-user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
     FoodComponent,
     UserComponent,
     SidenavComponent,
-    PopupAddFoodComponent
+    PopupAddFoodComponent,
+    PopupAddUserComponent
   ],
   imports: [
     BrowserModule,

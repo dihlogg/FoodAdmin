@@ -10,9 +10,6 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 export class PopupAddFoodComponent {
   constructor(private service: FoodInfoApiServiceService) { }
 
-  // @Output() addFood = new EventEmitter<void>();
-  // @Output() editFood = new EventEmitter<void>();
-  // @Output() submit = new EventEmitter<any>();
   @Output() close = new EventEmitter<boolean>();
 
   @Input() foodInfo: Food;
@@ -31,25 +28,26 @@ export class PopupAddFoodComponent {
   }
 
   submitForm() {
-    this.foodInfo.imageMenu =  this.imageMenu;
-    this.foodInfo.name =  this.name;
-    this.foodInfo.price =  this.price;
-    this.foodInfo.description =  this.description;
-    this.foodInfo.ingredient =  this.ingredient;
-    if (this.foodInfo.id !== null) {
+    this.foodInfo.imageMenu = this.imageMenu;
+    this.foodInfo.name = this.name;
+    this.foodInfo.price = this.price;
+    this.foodInfo.description = this.description;
+    this.foodInfo.ingredient = this.ingredient;
+
+    if (this.foodInfo.id !== null || this.foodInfo.id !== "") {
       console.log("edit mode");
-      this.service.putFoodInfo(this.foodInfo).subscribe(res => {    
+      this.service.putFoodInfo(this.foodInfo).subscribe(res => {
         this.closePopup(res);
       });
     } else {
       console.log("add mode");
-      this.service.postFoodInfo(this.foodInfo).subscribe(res => {       
+      this.service.postFoodInfo(this.foodInfo).subscribe(res => {
         this.closePopup(res);
       });
     }
   }
 
-  closePopup(result: boolean ) {
+  closePopup(result: boolean) {
     console.log("Close pupup");
     this.close.emit();
   }

@@ -33,7 +33,7 @@
                     [(ngModel)]="ingredient" required>
             </div>
 
-            <button type="submit">{{(foodInfo.id !== null) ? 'Edit' : 'Add' }}</button>
+            <button type="submit">{{(foodInfo.id === null || foodInfo.id === '') ? 'Add' : 'Edit' }}</button>
         </form>
         <button class="closePopup" (click)="closePopup(true)">Close</button>
     </div>
