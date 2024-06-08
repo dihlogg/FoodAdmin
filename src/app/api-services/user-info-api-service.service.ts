@@ -30,4 +30,8 @@ export class FoodInfoApiServiceService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<any>(this.userApiUrl + 'deleteUserInfo/' + userId, httpOptions);
   }
+
+  searchUserInfos(): Observable<any[]> {
+    return this.http.get<any[]>(this.userApiUrl + 'SearchUserInfos');
+  }
 }

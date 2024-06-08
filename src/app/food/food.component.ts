@@ -22,16 +22,12 @@ export class FoodComponent {
     if (this.foods.length === 0) {
       this.refreshFoodInfo();
     }
-
-    // this.http.get<Food[]>(this.foodInfoParrent.name)
-    //   .subscribe((data: any) => {
-    //     this.dataSource = new MatTableDataSource<Food>(data)
-    //   });
   }
   foodInfoParrent: Food;
   foods: Food[] = [];
   searchFood = '';
   showPopup = false;
+  isEditMode : boolean = false;
 
   refreshFoodInfo() {
     this.service.getFoodInfos().subscribe(data => {
@@ -72,12 +68,9 @@ export class FoodComponent {
     this.showPopup = true;
   }
 
-  closePopup(result: boolean) {
-    console.log("Close pupup");
-    this.showPopup = result;
-    if (result) {
-      this.refreshFoodInfo();
-    }
+  closePopup() {
+    console.log("close popup");
+    this.showPopup = false;
   }
 
   deleteFood(idFood: any) {
@@ -87,14 +80,5 @@ export class FoodComponent {
         this.refreshFoodInfo();
       });
     }
-  }
-  loadData(): Promise<void> {
-    return new Promise<void>((resolve) => {
-      this.http.get(this.service.getFoodInfos.toString()).subscribe((data: any) => {
-        this.foods = data; // Assuming your data structure matches the response
-        console.log('Data loaded successfully');
-        resolve();
-      });
-    });
   }
 }

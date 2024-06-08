@@ -6,7 +6,7 @@
         </div>
         <div class="nav-bar-details">
             <div class="nav-bar-add-food" (click)="openPopup()">
-                <app-popup-add-food *ngIf="showPopup" (close)="closePopup($event)" [foodInfo]="foodInfoParrent">
+                <app-popup-add-food *ngIf="showPopup" (close)="closePopup()" [foodInfo]="foodInfoParrent">
                 </app-popup-add-food>
                 <div class="add-food-image"><img src="./../../assets/plus.png" alt="add-food-image"></div>
                 <div class="add-food-details">

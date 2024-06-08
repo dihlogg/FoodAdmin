@@ -24,6 +24,7 @@ export class UserComponent {
   users: User[] = [];
   searchUser = '';
   showPopup = false;
+  isEditMode: boolean = false;
 
   refreshUserInfo() {
     this.service.getUserInfos().subscribe(data => {
@@ -62,12 +63,9 @@ export class UserComponent {
     this.showPopup = true;
   }
 
-  closePopup(result: boolean) {
-    console.log("Close pupup");
-    this.showPopup = result;
-    if (result) {
-      this.refreshUserInfo();
-    }
+  closePopup() {
+    console.log("close popup");
+    this.showPopup = false;
   }
 
   deleteUser(idUser: any) {

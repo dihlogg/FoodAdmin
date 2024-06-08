@@ -1,6 +1,6 @@
 <div class="popup">
     <div class="popup-content">
-        <h2>{{ (userInfo.id === null) ? 'Add User Details' : 'Edit User Details' }}</h2>
+        <h2>{{ (isEditMode) ? 'Edit User Details' : 'Add User Details' }}</h2>
         <form (ngSubmit)="submitForm()">
 
             <div class="userName">
@@ -22,20 +22,20 @@
             </div>
 
             <div class="userAddress">
-                <span>User Full Name: </span>
+                <span>User Address: </span>
                 <input type="text" placeholder="Plz Enter a User Address" name="userAddress" id="userAddress"
                     [(ngModel)]="userAddress" required>
             </div>
 
             <div class="userPhone">
-                <span>User Full Name: </span>
+                <span>User Phone: </span>
                 <input type="text" placeholder="Plz Enter a User Phone" name="userPhone" id="userPhone"
                     [(ngModel)]="userPhone" required>
             </div>
 
             
-            <button type="submit">{{(userInfo.id !== null) ? 'Edit' : 'Add' }}</button>
+            <button type="submit">{{(isEditMode) ? 'Edit' : 'Add' }}</button>
         </form>
-        <button class="closePopup" (click)="closePopup(true)">Close</button>
+        <button class="closePopup" (click)="closePopup()">Close</button>
     </div>
 </div>

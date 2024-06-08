@@ -22,7 +22,7 @@
     margin: 10px;
 }
 .popup-content h2 {
-    top: 10%;
+    top: 12%;
 }
 .userID {
     display: flex;
@@ -66,7 +66,7 @@
     border: 2px solid #FC8019;
     padding: 10px;
     flex: 1;
-    margin-left: 22px;
+    margin-left: 40px;
 }
 
 .userPassword {
@@ -86,7 +86,7 @@
     border: 2px solid #FC8019;
     padding: 10px;
     flex: 1;
-    margin-left: 22px;
+    margin-left: 10px;
 }
 
 .userFullName {
@@ -106,7 +106,7 @@
     border: 2px solid #FC8019;
     padding: 10px;
     flex: 1;
-    margin-left: 28px;
+    margin-left: 10px;
 }
 
 .userAddress {
@@ -126,7 +126,7 @@
     border: 2px solid #FC8019;
     padding: 10px;
     flex: 1;
-    margin-left: 14px;
+    margin-left: 25px;
 }
 
 .userPhone {
@@ -146,7 +146,7 @@
     border: 2px solid #FC8019;
     padding: 10px;
     flex: 1;
-    margin-left: 22px;
+    margin-left: 40px;
     margin-top: 10px;
 }
 

@@ -174,11 +174,23 @@
 }
 
 .user-container-detail .user-phone {
-    margin-right: 20px;
+    margin-right: -10px;
 }
 
 .user-container-detail .user-fullname {
-    margin-left: 40px;
+    margin-left: 20px;
+}
+
+.user-container-detail .user-username {
+    margin-left: 20px;
+}
+
+.user-container-detail .user-address {
+    margin-left: 25px;
+}
+
+.user-container-detail .user-password {
+    margin-left: 20px;
 }
 
 .user-container-detail .user-action {

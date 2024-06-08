@@ -10,17 +10,24 @@ import { Component, EventEmitter, Output, Input } from '@angular/core';
 export class PopupAddUserComponent {
   constructor(private service: FoodInfoApiServiceService) { }
 
-  @Output() close = new EventEmitter<boolean>();
+  isEditMode: boolean = false;
+  showPopup: boolean = false;
+
+  @Output() close = new EventEmitter<void>();
+  @Output() addUser = new EventEmitter<boolean>();
+  @Output() editUser = new EventEmitter<boolean>();
 
   @Input() userInfo: User;
+  id: string;
   userName: string;
   userPassword: string;
   userFullName: string;
   userAddress: string;
   userPhone: string;
-  
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.isEditMode = !!this.userInfo.id;
+    this.id = this.userInfo.id ?? ""
     this.userName = this.userInfo.userName;
     this.userPassword = this.userInfo.userPassword;
     this.userFullName = this.userInfo.userFullName;
@@ -35,21 +42,25 @@ export class PopupAddUserComponent {
     this.userInfo.userAddress = this.userAddress;
     this.userInfo.userPhone = this.userPhone;
 
-    if (this.userInfo.id !== null) {
-      console.log("edit mode");
+    if (this.isEditMode) {
+      console.log("edit mode" + this.id);
+      this.userInfo.id = this.id;
       this.service.putUserInfo(this.userInfo).subscribe(res => {
-        this.closePopup(res);
+        this.editUser.emit(res)
+        this.closePopup()
       });
     } else {
       console.log("add mode");
       this.service.postUserInfo(this.userInfo).subscribe(res => {
-        this.closePopup(res);
+        this.addUser.emit(res)
+        this.closePopup()
       });
     }
   }
 
-  closePopup(result: boolean) {
+  closePopup() {
     console.log("Close pupup");
+    this.showPopup = false;
     this.close.emit();
   }
 }

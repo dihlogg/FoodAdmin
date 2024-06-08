@@ -5,105 +5,77 @@
             <div class="list-icon"><fa-icon [icon]="faBarsStaggered"></fa-icon></div>
         </div>
         <div class="nav-bar-tabs">
-            <div class="new" (click)="onNewClick()" 
-                [className]="new == true?'new new-active':'new'">New</div>
+            <div class="new" (click)="onNewClick()" [className]="new == true?'new new-active':'new'">New</div>
             <div class="delivery" (click)="onDeliveryClick()"
                 [className]="delivery == true?'delivery delivery-active':'delivery'">Delivery</div>
             <div class="completed" (click)="onCompletedClick()"
                 [className]="completed == true?'completed completed-active':'completed'">Completed</div>
         </div>
         <div class="left-container-data-box">
-            <div class="left-container-new-box" *ngIf="new == true">
-                <div class="new-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00001</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
-                            <div class="left-container-info-details-status">As soon as</div>
-                        </div>
-                    </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
-                    </div>
-                </div>
-                <div class="new-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00002</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
-                            <div class="left-container-info-details-status">As soon as</div>
-                        </div>
-                    </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
-                    </div>
-                </div>
-                <div class="new-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00003</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
-                            <div class="left-container-info-details-status">As soon as</div>
-                        </div>
-                    </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
-                    </div>
-                </div>
-                <div class="new-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00004</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faClock"></fa-icon></div>
-                            <div class="left-container-info-details-status">As soon as</div>
-                        </div>
-                    </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="left-container-delivery-box" *ngIf="delivery == true">
-                <div class="delivery-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00007</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faTruck"></fa-icon></div>
-                            <div class="left-container-info-details-status">In Transit</div>
-                        </div>
-                    </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
-                    </div>
-                </div>
-            </div>
-            <div class="left-container-completed-box" *ngIf="completed == true">
-                <div class="completed-box">
-                    <div class="left-container-box-info">
-                        <div class="left-container-info-name">
-                            <span>Task #00005</span>
-                        </div>
-                        <div class="left-container-info-details">
-                            <div class="left-container-info-details-icon"><fa-icon [icon]="faKitchenSet"></fa-icon>
+            <ng-container *ngIf="new">
+                <div class="left-container-new-box" *ngFor="let transaction of transactions; let i = index">
+                    <div class="new-box" (click)="selectTransaction(transaction)"
+                        *ngIf="transaction.status === 'NewOrder'">
+                        <div class="left-container-box-info">
+                            <div class="left-container-info-name">
+                                <span>Task #000{{ i + 1 }}</span>
                             </div>
-                            <div class="left-container-info-details-status">10 minutes</div>
+                            <div class="left-container-info-details">
+                                <div class="left-container-info-details-icon">
+                                    <fa-icon [icon]="faClock"></fa-icon>
+                                </div>
+                                <div class="left-container-info-details-status">{{ transaction.status }}</div>
+                            </div>
+                        </div>
+                        <div class="left-container-box-price">
+                            <span>{{ transaction.totalPrice | currency:'VND' }}</span>
                         </div>
                     </div>
-                    <div class="left-container-box-price">
-                        <span>120,000đ</span>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="delivery">
+                <div class="left-container-delivery-box" *ngFor="let transaction of transactions; let i = index">
+                    <div class="delivery-box" (click)="selectTransaction(transaction)"
+                        *ngIf="transaction.status === 'delivery'">
+                        <div class="left-container-box-info">
+                            <div class="left-container-info-name">
+                                <span>Task #000{{ i + 1 }}</span>
+                            </div>
+                            <div class="left-container-info-details">
+                                <div class="left-container-info-details-icon">
+                                    <fa-icon [icon]="faTruck"></fa-icon>
+                                </div>
+                                <div class="left-container-info-details-status">{{ transaction.status }}</div>
+                            </div>
+                        </div>
+                        <div class="left-container-box-price">
+                            <span>{{ transaction.totalPrice | currency:'VND' }}</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
+
+            <ng-container *ngIf="completed">
+                <div class="left-container-completed-box" *ngFor="let transaction of transactions; let i = index">
+                    <div class="completed-box" (click)="selectTransaction(transaction)"
+                        *ngIf="transaction.status === 'completed'">
+                        <div class="left-container-box-info">
+                            <div class="left-container-info-name">
+                                <span>Task #000{{ i + 1 }}</span>
+                            </div>
+                            <div class="left-container-info-details">
+                                <div class="left-container-info-details-icon"><fa-icon [icon]="faKitchenSet"></fa-icon>
+                                </div>
+                                <div class="left-container-info-details-status">{{ transaction.status }}</div>
+                            </div>
+                        </div>
+                        <div class="left-container-box-price">
+                            <span>{{ transaction.totalPrice | currency:'VND' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
         </div>
     </div>
     <div class="right-container">
@@ -131,8 +103,8 @@
             <div class="right-container-task-details">
                 <div class="task-time">
                     <div class="line"></div>
-                    <div class="task-time-title">Preparing time</div>
-                    <div class="task-time-details">00h : 25m : 30s</div>
+                    <div class="task-time-title">Order time</div>
+                    <div class="task-time-details">{{ selectedTransaction?.dateOrder }}</div>
                 </div>
                 <div class="task-address">
                     <div class="line"></div>
@@ -148,50 +120,19 @@
             </div>
         </div>
         <div class="right-container-data-box">
-            <div class="right-container-data-box-ordered">
-                <div class="food-order-image"><img src="./../../assets/menufood1.png" alt="pasta"></div>
+            <div class="right-container-data-box-ordered" *ngFor="let cart of selectedTransaction?.cartDetails">
+                <div class="food-order-image"><img [src]="cart.image" alt="food image"></div>
                 <div class="food-order-details">
-                    <span class="order-name">Pasta</span>
-                    <span class="order-quantity">x2</span>
-                    <span class="total-price">70,000đ</span>
-                </div>
-            </div>
-            <div class="right-container-data-box-ordered">
-                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
-                <div class="food-order-details">
-                    <span class="order-name">Chicken</span>
-                    <span class="order-quantity">x4</span>
-                    <span class="total-price">140,000đ</span>
-                </div>
-            </div>
-            <div class="right-container-data-box-ordered">
-                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
-                <div class="food-order-details">
-                    <span class="order-name">Chicken</span>
-                    <span class="order-quantity">x4</span>
-                    <span class="total-price">140,000đ</span>
-                </div>
-            </div>
-            <div class="right-container-data-box-ordered">
-                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
-                <div class="food-order-details">
-                    <span class="order-name">Chicken</span>
-                    <span class="order-quantity">x4</span>
-                    <span class="total-price">140,000đ</span>
-                </div>
-            </div>
-            <div class="right-container-data-box-ordered">
-                <div class="food-order-image"><img src="./../../assets/menufood3.png" alt="chicken"></div>
-                <div class="food-order-details">
-                    <span class="order-name">Chicken</span>
-                    <span class="order-quantity">x4</span>
-                    <span class="total-price">140,000đ</span>
+                    <span class="order-name">{{ cart.foodName }}</span>
+                    <span class="order-quantity">x{{ cart.quantity }}</span>
+                    <span class="total-price">{{ cart.price | currency:'VND' }}</span>
                 </div>
             </div>
         </div>
-        <div class="right-container-ordered-total-price">210,000đ</div>
-            <div class="right-container-control-button">
-                Accept Order
-            </div>
+        <div class="right-container-ordered-total-price">{{ selectedTransaction?.totalPrice | currency:'VND' }}</div>
+        <div class="right-container-control-button" *ngIf="delivery !== true && completed !== true"
+            (click)="acceptOrder()">
+            Accept Order
+        </div>
     </div>
 </div>

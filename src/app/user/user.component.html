@@ -6,7 +6,7 @@
         </div>
         <div class="nav-bar-details">
             <div class="nav-bar-add-user" (click)="openPopup()">
-                <app-popup-add-user *ngIf="showPopup" (close)="closePopup($event)" [userInfo]="userInfoParrent">
+                <app-popup-add-user *ngIf="showPopup" (close)="closePopup()" [userInfo]="userInfoParrent">
                 </app-popup-add-user>
                 <div class="add-user-image"><img src="./../../assets/plus.png" alt="add-user-image"></div>
                 <div class="add-user-details">
@@ -26,6 +26,8 @@
             <div class="user-container-detail-header">
                 <span class="user-id">#</span>
                 <span class="user-fullname">Full Name</span>
+                <span class="user-username">User Name</span>
+                <span class="user-password">Password</span>
                 <span class="user-address">Address</span>
                 <span class="user-phone">Phone</span>
                 <span class="user-action">Action</span>
@@ -36,6 +38,8 @@
             <div class="user-container-detail" *ngFor="let user of users, let i = index">
                 <span class="user-id">{{ i + 1 }}</span>
                 <span class="user-fullname">{{ user.userFullName }}</span>
+                <span class="user-username">{{ user.userName }}</span>
+                <span class="user-password">{{ user.userPassword }}</span>
                 <span class="user-address">{{ user.userAddress }}</span>
                 <span class="user-phone">{{ user.userPhone }}</span>
                 <div class="user-action">
