@@ -29,7 +29,7 @@ export class FoodInfoApiServiceService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<any>(this.foodApiUrl + 'DeleteFoodInfo/' + foodId, httpOptions);
   }
-  searchFoodInfos(): Observable<any[]> {
-    return this.http.get<any[]>(this.foodApiUrl + 'SearchFoodInfos');
+  searchFoodInfos(foodName: String): Observable<any[]> {
+    return this.http.get<any[]>(this.foodApiUrl + 'SearchFoodInfos?foodName='+ foodName);
   }
 }

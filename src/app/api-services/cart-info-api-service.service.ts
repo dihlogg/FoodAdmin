@@ -33,7 +33,13 @@ export class FoodInfoApiServiceService {
   }
 
   // Transactions
-  getTransactions(userId: any): Observable<any[]> {
-    return this.http.get<any[]>(this.cartApiUrl + 'GetTransactions/'+ userId);
+  getAllTransactions(): Observable<any[]> {
+    return this.http.get<any[]>(this.cartApiUrl + 'GetAllTransactions');
+  }
+
+  // Update Status
+  updateStatusCartInfo(cartInfo: any): Observable<any> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.put<any>(this.cartApiUrl + 'UpdateStatusCartInfo', cartInfo, httpOptions);
   }
 }

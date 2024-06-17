@@ -1,4 +1,5 @@
 export interface Transactions {
+    id: string;
     dateOrder: string;
     status: string;
     totalPrice: number;

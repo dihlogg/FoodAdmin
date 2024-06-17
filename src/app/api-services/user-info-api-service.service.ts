@@ -31,7 +31,7 @@ export class FoodInfoApiServiceService {
     return this.http.delete<any>(this.userApiUrl + 'deleteUserInfo/' + userId, httpOptions);
   }
 
-  searchUserInfos(): Observable<any[]> {
-    return this.http.get<any[]>(this.userApiUrl + 'SearchUserInfos');
+  searchUserInfos(userName: String): Observable<any[]> {
+    return this.http.get<any[]>(this.userApiUrl + 'SearchUserInfos?userName='+ userName)
   }
 }

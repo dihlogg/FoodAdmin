@@ -27,7 +27,7 @@ export class FoodComponent {
   foods: Food[] = [];
   searchFood = '';
   showPopup = false;
-  isEditMode : boolean = false;
+  isEditMode: boolean = false;
 
   refreshFoodInfo() {
     this.service.getFoodInfos().subscribe(data => {
@@ -40,9 +40,13 @@ export class FoodComponent {
   }
 
   filteredFoods(searchFood: string) {
-    this.dataSource.filter = searchFood.trim().toLocaleLowerCase();
-    const filterValue = searchFood;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (searchFood == null || searchFood === '') {
+      this.refreshFoodInfo();
+    } else {
+      this.service.searchFoodInfos(searchFood).subscribe(data => {
+        this.foods = data;
+      });
+    }
   }
 
   onMatSortChange() {
@@ -58,7 +62,8 @@ export class FoodComponent {
       price: 0,
       description: "",
       ingredient: "",
-      imageDetail: ""
+      imageDetail: "",
+      foodQuantity: ""
     };
     this.showPopup = true;
   }
