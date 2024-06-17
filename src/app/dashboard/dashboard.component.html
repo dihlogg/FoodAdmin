@@ -30,6 +30,10 @@
                         <div class="left-container-box-price">
                             <span>{{ transaction.totalPrice | currency:'VND' }}</span>
                         </div>
+                        <div class="left-container-control-button" *ngIf="delivery !== true && completed !== true"
+                            (click)="acceptOrder(transaction.id)">
+                            Accept
+                        </div>
                     </div>
                 </div>
             </ng-container>
@@ -37,7 +41,7 @@
             <ng-container *ngIf="delivery">
                 <div class="left-container-delivery-box" *ngFor="let transaction of transactions; let i = index">
                     <div class="delivery-box" (click)="selectTransaction(transaction)"
-                        *ngIf="transaction.status === 'delivery'">
+                        *ngIf="transaction.status === 'Delivery'">
                         <div class="left-container-box-info">
                             <div class="left-container-info-name">
                                 <span>Task #000{{ i + 1 }}</span>
@@ -59,7 +63,7 @@
             <ng-container *ngIf="completed">
                 <div class="left-container-completed-box" *ngFor="let transaction of transactions; let i = index">
                     <div class="completed-box" (click)="selectTransaction(transaction)"
-                        *ngIf="transaction.status === 'completed'">
+                        *ngIf="transaction.status === 'Completed'">
                         <div class="left-container-box-info">
                             <div class="left-container-info-name">
                                 <span>Task #000{{ i + 1 }}</span>
@@ -130,9 +134,6 @@
             </div>
         </div>
         <div class="right-container-ordered-total-price">{{ selectedTransaction?.totalPrice | currency:'VND' }}</div>
-        <div class="right-container-control-button" *ngIf="delivery !== true && completed !== true"
-            (click)="acceptOrder()">
-            Accept Order
-        </div>
+
     </div>
 </div>

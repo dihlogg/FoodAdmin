@@ -33,6 +33,12 @@
                     [(ngModel)]="ingredient" required>
             </div>
 
+            <div class="foodQuantity">
+                <span>Quantity: </span>
+                <input type="text" placeholder="Plz Enter a Food foodQuantity" name="foodQuantity" id="foodQuantity"
+                    [(ngModel)]="quantity" required>
+            </div>
+
             <button type="submit">{{(isEditMode) ? 'Edit' : 'Add' }}</button>
         </form>
         <button class="closePopup" (click)="closePopup()">Close</button>

@@ -37,9 +37,13 @@ export class UserComponent {
   }
 
   filteredUsers(searchUser: string) {
-    this.dataSource.filter = searchUser.trim().toLocaleLowerCase();
-    const filterValue = searchUser;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (searchUser == null || searchUser === '') {
+      this.refreshUserInfo();
+    } else {
+      this.service.searchUserInfos(searchUser).subscribe(data => {
+        this.users = data;
+      });
+    }
   }
 
   onMatSortChange() {

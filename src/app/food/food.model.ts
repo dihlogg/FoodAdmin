@@ -6,4 +6,5 @@ export interface Food {
     imageDetail: string;
     description: string;
     ingredient: string;
+    foodQuantity: string;
   }

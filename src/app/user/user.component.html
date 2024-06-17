@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="nav-bar-search-user">
-                <input type="text" placeholder="Search User Name" name="search" [(ngModel)]="searchUser">
+                <input type="text" placeholder="Search User Name" name="search" [(ngModel)]="searchUser" (keyup.enter)="filteredUsers(searchUser)">
                 <button (click)="filteredUsers(searchUser)">
                     <i class="fa fa-search" style="font-size: 22px;"></i>
                 </button>

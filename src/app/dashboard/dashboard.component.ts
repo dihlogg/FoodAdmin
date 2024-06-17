@@ -5,6 +5,7 @@ import { faKitchenSet } from '@fortawesome/free-solid-svg-icons';
 import { faTruck } from '@fortawesome/free-solid-svg-icons';
 import { FoodInfoApiServiceService } from './../api-services/cart-info-api-service.service';
 import { Transactions } from './transactions.model';
+import { ConstEnv } from '../api-services/ConstEnv';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,8 @@ import { Transactions } from './transactions.model';
 })
 export class DashboardComponent {
   transaction: any;
+
+  
   constructor(private service: FoodInfoApiServiceService) { }
 
   userId: String = ""
@@ -21,10 +24,17 @@ export class DashboardComponent {
   orderDetails: any[];
 
   ngOnInit(): void {
-    this.userId = 'c52d998c-7e24-4fea-93f1-7662ffeb8d42';
-    this.service.getTransactions(this.userId).subscribe(data => {
+    this.refreshCartInfo();
+  }
+
+  refreshCartInfo() {
+    this.service.getAllTransactions().subscribe(data => {
       this.transactions = data;
     });
+  }
+
+  setDefaultTransaction() {
+    this.selectedTransaction = this.transactions.length > 0 ? this.transactions[0] : null;
   }
 
   selectTransaction(transaction: Transactions): void {
@@ -32,10 +42,21 @@ export class DashboardComponent {
   }
 
   // func accept move order from new to delivery
-  acceptOrder(): void {
+  acceptOrder(cartId: String): void {
     if (this.selectedTransaction) {
-      this.selectedTransaction.status = 'delivery'
+      this.selectedTransaction.status = ConstEnv.deliveryConst;
       this.selectedTransaction = null
+      var  orderStatus = {
+        cartInfoId:  cartId,
+        status: "Delivery"
+      };
+      this.service.updateStatusCartInfo(orderStatus).subscribe(data => {
+        if(data == true){
+          this.refreshCartInfo();
+        }else{
+          // erroe message
+        }
+      });
     }
   }
 

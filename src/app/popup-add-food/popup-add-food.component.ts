@@ -25,6 +25,7 @@ export class PopupAddFoodComponent {
   description: string;
   ingredient: string;
   imageDetails: string;
+  quantity: string;
 
   public ngOnInit(): void {
 
@@ -36,6 +37,7 @@ export class PopupAddFoodComponent {
     this.description = this.foodInfo.description;
     this.ingredient = this.foodInfo.ingredient;
     this.imageDetails = this.foodInfo.imageDetail
+    this.quantity = this.foodInfo.foodQuantity
   }
 
   submitForm() {
@@ -45,6 +47,7 @@ export class PopupAddFoodComponent {
     this.foodInfo.description = this.description;
     this.foodInfo.ingredient = this.ingredient;
     this.foodInfo.imageDetail = this.imageDetails;
+    this.foodInfo.foodQuantity = this.quantity
 
     if (this.isEditMode) {
       console.log("edit mode" + this.id);

@@ -150,6 +150,27 @@
     margin-top: 10px;
 }
 
+.foodQuantity {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    align-items: center;
+    background-color: transparent;
+    margin-top: 20px;
+}
+
+.foodQuantity input[type=text] {
+    width: 600px;
+    height: 20px;
+    border-radius: 15px;
+    border: none;
+    border: 2px solid #FC8019;
+    padding: 10px;
+    flex: 1;
+    margin-left: 22px;
+    margin-top: 10px;
+}
+
 button[type="submit"] {
     background-color: #FC8019;
     color: #fff;
